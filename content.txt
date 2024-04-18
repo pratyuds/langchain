@@ -1,0 +1,168 @@
+"********************  This Regarding Temperature key  *********************"
+
+"""Temperature just how much control the agent should have while providing you the response
+If we keep on reducing this value the agent will loose some kind of control and 
+it will probably you know try to see how much you control when ever we are building some applications 
+we want may be probably train with our own PDF or integrated some Google search API there also specifically
+want to have response how much control how much balanced answers  we specifically want
+that will be set up this by thos particular temparature"""
+
+"********************  Prompt Engineering  ********************************"
+
+"""Prompt Engineering in langston also you have something called as prompts
+probably you are solving a use case a custom use case where you want your searches should be of a category type
+it can be with two or three parameters right it should not be generic as such you know like how we did the search right now 
+"""
+"""
+This LLM chain when ever you give prompt template it will be super beneficial because
+LLM chain will be responsible in executing those prompt template because you are giving some kind of input and you are getting some kind of input.
+With respect to every prompt template over here we will specifically have an llm chain because 
+we need to execute those things right so i have given because we want to create a llm chain for this specific prompt template now
+
+"""
+The LLm to specifically run this particular that serach bar where I just give the input and automatically this llm chain
+will be written over here to run it or predict it"""
+
+"""
+---In order to copy the multiple templates---
+
+in first prompt , will get the celebrety name
+from this we will get some input parameter name and then will get some kind output 
+those output we are specifically giving we can also assign over here itself lets say 
+here i am going to probably say we have output_key parameter
+
+what we are searching over here for example like i want to tell me about celebrety name
+so output name obviously over here with respective this we will get soe output.
+let's say here iam giving name i will keep the output as title
+
+title so that basically means that Ms Dhoni now the thing is that then what we can do 
+from one perompt template I give the input I get the output
+I need to pass that output to the next prompt template and that continution should happen it
+should be keep on giving me multiple results okay now in the 
+second prompt template 
+********* in the first prompt**********
+for example: in the first prompt we are searching about Ms dhone 
+there we will set a input variable as name and in template also we can pass name and then will get the output
+***********second propmpt**********
+what ever the output we will get from the first prompt we need to pass that output to
+next second promt there we cans set output_key="title"
+then in the second prompt input we can pass parameter like person it means more about that person like 
+date of birth or other stuff
+
+next we need to define second chain
+in that chain wecan set output_key as dob why because we are seraching about that celebrety dateofbirth
+for example
+
+******** combine those two chains*********
+If we want to combine those two chains one after the other either we can run the chains one after the other
+ otherwise we can combine the chain and probably set the sequence using simplesequential chains package from langchain
+
+************* issue with simple sequential chain ************
+1. when ever we are using simple sequential chain it will give last output
+2. it means for eample we given name in ythe first input out asking second quetion or print info about that particular 
+  celebaty it will print direct last output it means dob.
+
+********** to resolve this issue *********
+1. we need to use simplesequentialchain
+2. need to add input , output variables to sequential chain
+3. st.write(parent_chain({'name':input_text})) --> from this istead of string or paragrah content 
+it will give entire out in json format
+
+
+############# language translate and oneshot few template #################
+********* prompt engineering *********
+A prompt referes to the input to the model. This input is often constructed from multiple components.
+A PromptTemplate is responsible for the construction of this input.
+Langchain provides several classes and functions to make constructing and working with prompts easy.
+1. when ever we use different tools like chain lit over there also
+  the prompt template can be used from the lang chain itself right
+2. generic prompts also will work in llm chain models.
+3. like what ever we give an action as input to prompt llm model will like provide the clear info about that input.
+4. for example we give financial advisor to prompt template:
+    what ever the word will give like : CGST :--> it will give explation clearly
+
+5. we can able to do single chain or multiple chains using LLMchain.
+6. the fastness of response is dependent on API key
+7. Language translation also possible to do using prompt
+8. in easy way it will translate the targetted language for the given input.
+9. Example :----chain('sentence' : 'Hello How are you','target_language':"hindhi")
+10. when we get in this form of json probably pipck up what ever taxt we given specially want anf we can
+    give the output over there atleast in the form of key value pair.
+11. we can able to perform this operation with any number of pareameters
+
+************ Few shot prompt template *************
+1. here first we need to give few examples what ever we want.
+   like if we want antonyms of given word , need to define 2 or 3 examples relavent to that topic.
+2. this is the hint for our LLM model 
+3. Next we can create our own formatted template in which way we want the response.
+4. then we need to create the prompt template with the input variables
+5. then we need to create the few shot prompt.
+    1. in that few shot template we can assign the examples what ever created earlier.
+    2. then assign the example prompt what ever we created earlier.
+    3. then just create one prefix with sample text like give the antonyms of every input.
+    4. then need to create the suffix: in that need to create the input format.
+    5. then assign the input variables using input_variables.
+    6. using example_separator is the string we will use to join the prefix, examples, and suffix to gether.
+    7. if we execute the few_shot_prompt.format(input='big')
+    8. then need to create a chain using LLMChain
+    9. we can get the repsone using chain.run('big') = 'small'
+    10. if we give like chain({'input':'big'}) == {'input':'big','text':'small'}
+    11. like this what ever format we want like that we need to provide like string or json key value pair.
+    
+################# PDF Query using Langchain #####################
+we can able to read and take the data from the pdf file or text file
+
+***PyPDF2****
+it will help the to read the content from the pdf document.
+***faiss-cpu***
+***tiktoken***
+it will focus on creating tokens
+****PdfReader**** :-- it will take responsible for reading the PDF files
+****openAIEmbeddings *** :---
+   open ai text embeddings measure the relatedness of text strings.
+   embedding are commonly used for 
+   1. serach --> results are ranked by relavence to aquery string
+   2. clusetering --> text strings are grouped by similariy
+   3. recommendation --> items with related text strings are recommended
+   4. anomaly detection --> outliers with little relatedness are identified
+   5. diversity measurement --> similarity distributions are analysed
+   6. classification --> text strings are classified by their most similar label
+
+      here using these we can upload the pdf for example budget of current year document.
+   ask questions from that document and will able to get the answers from that document.
+
+   **** character text splitter ***
+   what ever content I have basically inside the pdf and i am just going to split that into
+   considering some special characters like a new line and i can also define how uch is the text size
+   we know.
+   This is specifically done because when ever I am using openAI embeddings we have a fixed size of tokens
+   and this is very importent step that we really need to do.
+
+   *** FAISS ****
+   this is like a vector database you know when ever you are trying to create an embeddings of the 
+   text data that is probably present inside your PDF we will try to store in that in the vector stores.
+
+******** Flow steps:*********
+    1. import openapi key
+    2. allocate that openapi key to varaibale
+    3. using PdfReader we can upload the PDF document.
+    4. using typing_extenstions package we can able to read the text content from the PDF document from the all the pages append to the empty text string.
+    5. we need to split the text using character from the raw text text splitter based on the 
+        1. specific seperator.
+        2. chuck_size
+        3. chuck_overlap
+        4. length_function
+    6. here we can play with different different chuck sizes.
+    7. document_search = FAISS.from_texts(texts,embeddings) ---> using this we are providing the search capability on the raw text.
+    8. here what ever the text we have that we will converting as embeddings and will store here.
+    9. need to import the load_qa_chain from langchain.chains.question_answering
+    10. we need to create one chain using load_qa_chain
+    11. then when ever we are asking questions it will answer for those questions
+    
+  1. the we need to ask an any question or query from that document.
+  2. then using document_serach along with siilarity search it will serach the answer for that particular question from that document.
+  3. using chain.run() we can assign the docs(document_serach, query)
+  4. using chain.run() it will serach the answer for that particular question
+     and it will provide the answer.
+  5. any number of quetions ot will ask and we will get the answers.
+  
